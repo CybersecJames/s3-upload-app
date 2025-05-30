@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uploaded Files</title>
+  <style>
+    .thumb {
+      max-width: 200px;
+      max-height: 200px;
+      object-fit: contain;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Uploaded Files</h1>
+  <div>
+    {% for obj in objects %}
+      <div>
+        <a href="{{ obj.url }}">{{ obj.key }}</a><br>
+        {% if obj.key.endswith(('.png', '.jpg', '.jpeg', '.gif')) %}
+          <img class="thumb" src="{{ obj.url }}">
+        {% endif %}
+      </div>
+      <hr>
+    {% endfor %}
+  </div>
+  <a href="/">Back to Upload</a>
+</body>
+</html>

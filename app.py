@@ -28,9 +28,14 @@ def upload_file():
 # 07
 @app.route("/files")
 def list_files():
-    objects = s3.list_objects_v2(Bucket=S3_BUCKET).get("Contents", [])
-    urls = [f"https://{S3_BUCKET}.s3.amazonaws.com/{obj['Key']}" for obj in objects]
-    return "<br>".join(urls)
+    response = s3.list_objects_v2(Bucket=S3_BUCKET)
+    contents = response.get("Contents", [])
+    objects = [{
+        "key": obj["Key"],
+        "url": f"https://{S3_BUCKET}.s3.amazonaws.com/{obj['Key']}"
+    } for obj in contents]
+    return render_template("files.html", objects=objects)
+
 
 # 08
 if __name__ == "__main__":
