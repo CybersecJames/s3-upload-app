@@ -1,0 +1,14 @@
+<!-- templates/upload.html -->
+<!DOCTYPE html>
+<html>
+<head><title>Upload to S3</title></head>
+<body>
+  <h1>Upload a File</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file"><br><br>
+    <input type="submit" value="Upload">
+  </form>
+  <br>
+  <a href="/files">View Uploaded Files</a>
+</body>
+</html>
